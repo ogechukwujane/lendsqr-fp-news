@@ -19,7 +19,10 @@ export const Login = ({}) => {
         <View style={styles.form}>
           <View style={styles.grid}>
             <TextInputComp value={''} placeholder="Email" />
-            <ButtonComp text="Continue" />
+            <ButtonComp
+              text="Continue"
+              onPress={() => navigation.navigate('HomeScreen')}
+            />
           </View>
           <Text style={styles.paragraph}>or</Text>
           <View style={styles.row}>
