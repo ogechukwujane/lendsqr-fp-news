@@ -1,9 +1,13 @@
 import React from 'react';
-import {FlatList, ScrollView, Text, View} from 'react-native';
+import {FlatList, Pressable, ScrollView, Text, View} from 'react-native';
 import {styles} from './styles';
 import {SearchInputComp} from '../../components';
+import {useNavigation} from '@react-navigation/native';
+import {INavSetting} from '../../navigation/type';
 
 export const HomeScreen = () => {
+  const navigation = useNavigation<INavSetting>();
+
   const addVerticalSpace = (index: number) => {
     if (index % 2 !== 0) {
       return {marginLeft: 13};
@@ -36,7 +40,8 @@ export const HomeScreen = () => {
               numColumns={2}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item, index}) => (
-                <View
+                <Pressable
+                  onPress={() => navigation.navigate('ViewNewsScreen')}
                   style={[addVerticalSpace(index), styles.newsCard]}
                   key={index}>
                   <View style={styles.imageContainer}></View>
@@ -45,7 +50,7 @@ export const HomeScreen = () => {
                     <Text style={styles.title}>Author</Text>
                     <Text style={styles.paragraph}>Author</Text>
                   </View>
-                </View>
+                </Pressable>
               )}
               showsVerticalScrollIndicator={false}
               ItemSeparatorComponent={() => <View style={{height: 15}} />}
